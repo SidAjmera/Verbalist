@@ -200,6 +200,7 @@ test('optional audio stays local, clocks recover, and streamed responses support
   await page.context().setOffline(false);
   await expect(page.getByText('Live account sync connected', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Pause', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Resume debate', exact: true })).toBeEnabled();
   const frozen = await page.getByRole('timer').textContent();
   await page.reload();
   await expect(page.getByRole('timer')).toHaveText(frozen!);
