@@ -6,7 +6,7 @@
 2. **Voice (implemented locally):** browser microphone permissions and transcription, playback, text streaming, WebSocket revision notifications, synchronized practice clocks and recovery. Optional per-take local recording/download, off by default. No audio server, cloud audio storage or provider-native realtime speech.
 3. **Intelligence (implemented locally):** typed/transcript-grounded argument snapshots, React Flow maps, potential-fallacy findings, optional OpenAI native research, advisory Quick Debate ballots, separate coaching, five drills, Recharts trends and activity achievements. External model/research quality remains unverified.
 4. **Multiplayer (implemented locally):** invitation-only rooms, synchronized human turns/voice, independent judges, moderation, reviewed practice standings, private tournaments and advisory ballots. Public-network TURN/hardware checks remain external.
-5. **MUN (requires explicit authorization):** committees, delegates, researched country positions, caucuses, negotiation, resolutions, amendments and advanced formats.
+5. **MUN (started; first slice implemented locally):** private three-delegate committee setup, pinned practice briefs, ordered openings, caucus topics and one-to-one negotiation, private drafts/history/export/deletion. Country notes are unverified and the procedure is custom practice. Resolutions, amendments, delegate feedback and advanced formats remain later slices. Neon + Clerk is selected for a deferred migration; existing verified auth/RLS is retained meanwhile.
 
 ## Boundaries
 

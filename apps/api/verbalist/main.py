@@ -27,6 +27,7 @@ from .models import (
 )
 from .motions import MOTIONS
 from .multiplayer import router as multiplayer_router
+from .mun import router as mun_router
 from .realtime import router as realtime_router
 from .room_socket import router as room_socket_router
 
@@ -67,6 +68,7 @@ def create_app() -> FastAPI:
     app.include_router(learning_router)
     app.include_router(multiplayer_router)
     app.include_router(room_socket_router)
+    app.include_router(mun_router)
     app.add_middleware(BodyLimitMiddleware)
     app.add_middleware(
         CORSMiddleware,
@@ -101,7 +103,8 @@ def create_app() -> FastAPI:
         return {
             "status": "ok",
             "configured": bool(settings.supabase_url and settings.supabase_publishable_key),
-            "phase": 4,
+            "phase": 5,
+            "phase5_scope": "mun-practice-starter",
         }
 
     async def budget(db: Database, kind="api"):
@@ -400,6 +403,10 @@ def create_app() -> FastAPI:
             ("drill_attempts", "owner_id"),
             ("user_progress", "owner_id"),
             ("achievements", "owner_id"),
+            ("mun_committees", "owner_id"),
+            ("mun_delegates", "owner_id"),
+            ("mun_messages", "owner_id"),
+            ("mun_drafts", "owner_id"),
         ]:
             # Preferences use user_id as their stable primary key.
             tables[table] = await db.all_rows(table, {owner_column: f"eq.{db.identity.id}"})

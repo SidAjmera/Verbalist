@@ -39,6 +39,10 @@ const columns = {
   tournament_matches: ['id', 'tournament_id'],
   ranking_profiles: ['id', 'user_id'],
   rankings: ['id', 'user_id'],
+  mun_committees: ['id', 'owner_id'],
+  mun_delegates: ['id', 'owner_id', 'committee_id'],
+  mun_messages: ['id', 'owner_id', 'committee_id', 'request_id'],
+  mun_drafts: ['id', 'owner_id', 'committee_id'],
 };
 const orderColumns = new Set(['id', 'position', 'updated_at', 'created_at']);
 function jwt(id) {
@@ -193,6 +197,11 @@ const server = createServer(async (req, res) => {
           'room_send_signal',
           'room_live_tick',
           'room_disconnect',
+          'create_mun',
+          'mun_detail',
+          'mun_save_draft',
+          'mun_append',
+          'mun_command',
         ]).has(name)
       )
         return reply(404, {});

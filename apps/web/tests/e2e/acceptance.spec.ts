@@ -3,3 +3,4 @@ import './platform.spec';
 import './voice.spec';
 import './learning.spec';
 import './multiplayer.spec';
+import './mun.spec';

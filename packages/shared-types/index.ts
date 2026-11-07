@@ -1,5 +1,6 @@
 export type ProviderId = 'openai' | 'anthropic' | 'gemini' | 'compatible' | 'local' | 'mock';
 export * from './multiplayer';
+export * from './mun';
 export type Side = 'proposition' | 'opposition';
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 export type Persona = 'analyst' | 'socratic' | 'challenger';

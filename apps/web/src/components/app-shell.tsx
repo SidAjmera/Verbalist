@@ -35,6 +35,7 @@ const navigation = [
   { href: '/rooms', label: 'Multiplayer', icon: Swords },
   { href: '/tournaments', label: 'Tournaments', icon: ShieldCheck },
   { href: '/leaderboard', label: 'Practice standings', icon: BarChart3 },
+  { href: '/mun', label: 'Model United Nations', icon: BookOpen },
 ];
 export function AppShell({ children }: { children: React.ReactNode }) {
   const path = usePathname(),

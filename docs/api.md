@@ -1,4 +1,16 @@
-# API contracts — Phases 1–4
+# API contracts — Phases 1–4 and Phase 5 MUN starter
+
+Phase 5 starter routes, under the same verified-owner boundary:
+
+- `GET /v1/mun/catalog`: three practice committee templates, eight selectable countries and the custom `mun-practice-v1` procedure disclosure.
+- `GET/POST /v1/mun`: owned history (30 rows/offset), or creation with agenda and exactly three distinct country briefs. First delegate is human; remaining two are AI. Sources are optional public HTTPS research notes, not verified evidence.
+- `GET /v1/mun/{id}`: private committee, pinned delegates/briefs, immutable ordered messages and the owner's draft.
+- `PUT .../draft`: independent draft version/CAS, maximum 6,000 characters.
+- `POST .../speeches`: human-only speaking slot, expected session/draft versions, replay UUID and bounded text.
+- `POST .../reply`: AI-only slot, provider/model, replay UUID, session version and request-scoped BYOK header. Replays do not contact the provider again; failures do not clear drafts. Pinned briefs remain complete; historical content is bounded to the latest 10,000 characters with omissions/partial excerpts marked.
+- `POST .../actions`: versioned pause/resume/finish/cancel, topic-based caucus or negotiation with delegate ordinal 1/2. Stage/partner changes require the human speaking slot after openings. Three openings transition to caucus. Negotiation alternates the human and selected AI; ordinary caucus cycles through all three. Maximum 60 saved contributions.
+
+These tables join owner-filtered export and account-deletion cascades. No real national-policy verification, MUN ranking, official procedure, resolutions or amendments is implied by the starter endpoints. Hosted deployment and the selected Neon + Clerk migration are deferred.
 
 Phase 4 adds verified membership-based surfaces (see [multiplayer design](phase-4.md)):
 

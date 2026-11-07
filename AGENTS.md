@@ -2,7 +2,9 @@
 
 This checkout contains Verbalist, a private debate training platform. The directory is historically named Vocalist; the product name is **Verbalist**.
 
-- Phases 1–4 are authorized. Phase 5 requires explicit user authorization.
+- Phases 1–5 are authorized. Phase 5 was explicitly started on 7 November 2026.
+- Phase 5 begins with private MUN practice; advanced formats, resolutions and amendments follow in later slices. Do not describe the entire phase as complete after its first slice.
+- Neon + Clerk is the selected migration path. Migration and Vercel deployment are deferred while Phase 5 starts; preserve the current verified auth/RLS boundary until the replacement is implemented and tested.
 - Read `docs/architecture.md`, `docs/api.md`, and `README.md` before architectural changes.
 - Keep Next.js frontend, FastAPI backend, shared contracts and SQL migrations separate.
 - Every functional page/API requires verified Supabase authentication. No guest or mock-auth production fallback.

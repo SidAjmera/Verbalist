@@ -1,6 +1,6 @@
 # Verbalist
 
-A private, account-based debate training platform. **Phases 1–4**: text/voice Quick Debate, argument maps, advisory judging/coaching, practice drills, saved progress, private multiplayer and tournaments. The checkout folder is named `Vocalist`; the product is **Verbalist**.
+A private, account-based debate training platform. **Phases 1–4 plus the Phase 5 MUN starter**: text/voice Quick Debate, argument maps, advisory judging/coaching, practice drills, saved progress, private multiplayer, tournaments and text-first diplomatic practice. The checkout folder is named `Vocalist`; the product is **Verbalist**.
 
 ## What is implemented
 
@@ -22,13 +22,19 @@ A private, account-based debate training platform. **Phases 1–4**: text/voice 
 
 Phase 4 adds private human debate rooms, invitations, player/judge/spectator roles, synchronized clocks, WebRTC audio, moderation, advisory AI ballots, human-confirmed results, opt-in practice standings and private 2/4/8-player tournaments. See [Phase 4](docs/phase-4.md). The Multiplayer list is the shared match history, separate from solo Debate history.
 
-MUN and advanced formats remain Phase 5. Practice standings are not official competition ratings. Optional clocks close the microphone floor at the allowance; users review and submit text. Public-network voice needs an operator-configured TURN relay and separate live verification.
+Phase 5 has started with private MUN committee practice. Resolution drafting, amendments, delegate feedback and advanced debate formats remain outstanding. Practice standings are not official competition ratings. Optional clocks close the microphone floor at the allowance; users review and submit text. Public-network voice needs an operator-configured TURN relay and separate live verification.
 
 ## Private multiplayer
 
 For Phase 4, open **Multiplayer**, create a private room and choose whether to host as proposition or as the independent judge. Create a role-specific invitation, copy its code and share it manually. Guests join with the code and an alias. Both players choose Ready; the host/judge starts the debate, then the current speaker opens their clock, drafts or dictates, and submits. Judges/spectators can explicitly join audio to listen. **Save my next speaking take as audio** is a separate, default-off choice for the player's own microphone. Stop dictation and review the text before submitting.
 
 After completion, the independent judge can request an advisory ballot using their Settings provider/key, then write and explicitly confirm a final decision. The room list retains match history. **Practice standings** requires both players' global opt-ins and per-room consent; it uses transparent points and is not an official rating. **Tournaments** lets a nonplaying organizer invite 2/4/8 entrants, seed a full roster in join order, schedule match starts and judge each advancing result. No messages are automatically sent to guests. See [relay setup and deployment limits](docs/deployment.md#phase-4-release-and-relay-setup).
+
+## Model United Nations starter
+
+For the Phase 5 starter, open **Model United Nations**, choose a committee/agenda and supply three distinct country briefs: your country and two AI delegates. Briefs can be hypothetical; links are research notes, never automatic policy verification. The notes are pinned at creation. Submit your opening, then request each AI delegate's response separately using your Settings provider. After three openings, set a caucus topic or choose a one-to-one negotiation partner. Drafts autosave privately; pause/resume, saved history, transcript export and account deletion include MUN data. See [Phase 5 scope](docs/phase-5.md). This custom, text-first procedure is not an official conference rulebook, and the rest of Phase 5 is not claimed complete.
+
+GitHub upload is enabled; deployment and the chosen Neon + Clerk migration are deferred at the user's request. Current code still uses its verified Supabase adapter, including local test fixtures. Do not paste Neon credentials into the Supabase environment variables. No new hosted Supabase project exists because the account's free-project limit prevented creation.
 
 ## Analysis, coaching and practice
 
@@ -121,7 +127,7 @@ npx supabase migration list
 npx supabase db push
 ```
 
-Review the linked project and pending migrations before pushing. The [foundation migration](supabase/migrations/20261107022330_phase1_foundation.sql) creates tables, grants, RLS, ownership-checking RPCs and account triggers. [Phase 2](supabase/migrations/20261107041721_phase2_voice_and_clocks.sql) adds voice preferences/clocks; [Phase 3](supabase/migrations/20261107072739_phase3_intelligence.sql) adds private analysis, research, drills and progress; [Phase 4](supabase/migrations/20261107083107_phase4_multiplayer.sql) adds private multiplayer, reviewed practice standings and tournaments. Apply all four in order. New migrations should be created using `npm run db:new -- descriptive_name`.
+Review the linked project and pending migrations before pushing. The [foundation migration](supabase/migrations/20261107022330_phase1_foundation.sql) creates tables, grants, RLS, ownership-checking RPCs and account triggers. [Phase 2](supabase/migrations/20261107041721_phase2_voice_and_clocks.sql) adds voice preferences/clocks; [Phase 3](supabase/migrations/20261107072739_phase3_intelligence.sql) adds private analysis, research, drills and progress; [Phase 4](supabase/migrations/20261107083107_phase4_multiplayer.sql) adds private multiplayer, reviewed practice standings and tournaments. The [Phase 5 starter](supabase/migrations/20261107131839_phase5_mun_practice.sql) adds private MUN practice. Apply all five in order to a deliberately selected compatible database; the Neon + Clerk migration is still pending. New migrations should be created using `npm run db:new -- descriptive_name`.
 
 In Supabase Auth:
 
@@ -185,7 +191,7 @@ npm run test:e2e
 
 The browser suite starts a test-only Auth/PostgREST fixture, the actual FastAPI API with mock AI, and the actual Next.js frontend on ports **54400**, **8100** and **3100**. It uses the real SQL migration. These services are loopback-only and are never production authentication. No real mail, Google login or paid AI is used. Override `VERBALIST_PYTHON` if the API virtualenv is elsewhere. The fixture is not a demo login for the application.
 
-See [Phase 4 verification](docs/phase-4-verification.md), historical [Phase 3 verification](docs/phase-3-verification.md), [Phase 2 verification](docs/phase-2-verification.md) and [Phase 1 verification](docs/verification.md) for results and remaining live checks. [API contracts](docs/api.md), [deployment](docs/deployment.md), and [security](docs/security.md) describe the integration boundaries.
+See [Phase 5 starter verification](docs/phase-5-verification.md), [Phase 4 verification](docs/phase-4-verification.md), historical [Phase 3 verification](docs/phase-3-verification.md), [Phase 2 verification](docs/phase-2-verification.md) and [Phase 1 verification](docs/verification.md) for results and remaining live checks. [API contracts](docs/api.md), [deployment](docs/deployment.md), and [security](docs/security.md) describe the integration boundaries.
 
 ## Repository
 

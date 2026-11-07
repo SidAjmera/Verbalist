@@ -1,5 +1,9 @@
 # Deployment
 
+Current publishing status: Phases 1–4 are uploaded to the public https://github.com/SidAjmera/Verbalist repository. Phase 5 starts on `phase-5-mun`. The user requested GitHub-only publishing for now. The selected Neon + Clerk migration and Vercel deployment are deferred; current code still uses the verified Supabase adapter. The attempt to create a dedicated Supabase project did not succeed because the free-project limit was reached. Do not claim a hosted database or functioning deployment exists.
+
+The MUN starter adds `20261107131839_phase5_mun_practice.sql`; apply all five migrations only to a deliberately selected compatible database after the chosen identity/database migration is implemented. No remote migration was run. Its owner-filtered tables, drafts and transcripts participate in export/deletion. The SQL currently uses the existing `auth.users`/`auth.uid()` contract; this must be deliberately adapted during the Neon + Clerk migration rather than pointed at Neon unchanged.
+
 The frontend and API deploy independently. No deployment or hosted Supabase configuration was performed during implementation.
 
 ## Frontend (Vercel-compatible)

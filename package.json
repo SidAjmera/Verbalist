@@ -12,7 +12,7 @@
     "lint": "npm run lint -w @verbalist/web",
     "typecheck": "npm run typecheck -w @verbalist/web",
     "test": "npm run test -w @verbalist/web && npm run test:db",
-    "test:db": "node --test tests/database.test.mjs tests/phase2-database.test.mjs tests/phase3-database.test.mjs tests/phase4-database.test.mjs",
+    "test:db": "node --test tests/database.test.mjs tests/phase2-database.test.mjs tests/phase3-database.test.mjs tests/phase4-database.test.mjs tests/phase5-database.test.mjs",
     "test:e2e": "npm run test:e2e -w @verbalist/web",
     "format": "node scripts/format.mjs --write",
     "format:check": "node scripts/format.mjs",
