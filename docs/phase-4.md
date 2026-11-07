@@ -1,0 +1,13 @@
+# Phase 4 — private multiplayer
+
+Authorized 7 November 2026. Keep the blue/black theme and optional, default-off local audio. MUN/Phase 5 remains out of scope.
+
+- Add invitation-only Quick Debate rooms with proposition/opposition, independent judge and spectator roles. Store only high-entropy invite hashes; bounded invitations expire and can be revoked. Joining explicitly shares a room alias, submitted text and opted-in live voice with members. Unsent drafts remain private to their author.
+- PostgreSQL owns readiness, six-turn order, clocks, versions, replay IDs, moderation and immutable submitted turns. Only host/judge moderates; final result confirmation requires an independent judge and written human review. AI transcript ballots are optional/advisory, never delivery scores or automatic official results.
+- Use origin-checked authenticated WebSockets for revisions, bounded connection-fenced signaling and presence. Revalidate identity/membership, expire signaling, reconnect text updates and retain polling fallback. Use native WebRTC for live audio, floor/mute gating and explicit rejoin after loss. TURN REST credentials are short-lived and operator-configured; no relay service is provisioned. Public-network connectivity needs separate live acceptance.
+- Record only a user's own opted-in speaking take to page memory for preview/download/discard, never upload audio. Browser dictation is optional, separately consented and may use vendor services. Audio files do not enter transcripts, ballots or exports.
+- Add opt-in pseudonymous practice standings from independently human-confirmed results, with both debaters consenting. Use transparent 3/win, 1/draw points; exclude simulated AI-assisted results. These are not official/high-stakes rankings.
+- Add private 2/4/8-person single-elimination tournaments: invitations/roster, deterministic join-order seeding, bracket/match rooms, scheduling, human-reviewed advancement and cancellation. Organizer is an independent judge, not an entrant. Event entrants can observe event matches.
+- Extend export/deletion and tests. Privacy policy: deleting an account removes multiplayer rooms/tournaments containing that participant, including shared transcripts/results and linked leaderboard credits; disclose this at deletion. Membership removal immediately revokes shared reads/signaling.
+
+Verify SQL grants/RLS/roles/replay/clock/bracket/result consistency; API and socket identity/origin/signaling/TURN limits; two real browser contexts exchanging WebRTC media with synthetic devices; text/dictation/local recording; moderation/revocation; rankings and tournament advancement; full Phase 1–3 regression. Separate local fixture evidence from real Supabase, internet relay, hardware and model quality checks.

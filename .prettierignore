@@ -1,0 +1,15 @@
+node_modules
+.next
+.next-e2e
+next-env.d.ts
+.tools
+.venv
+uv.lock
+package-lock.json
+supabase/.temp
+*.sql
+*.py
+*.toml
+test-results
+playwright-report
+*.tsbuildinfo

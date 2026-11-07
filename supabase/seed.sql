@@ -1,0 +1,1 @@
+-- No account data or debates are seeded in production.

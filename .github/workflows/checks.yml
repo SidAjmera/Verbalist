@@ -1,0 +1,26 @@
+name: Verbalist checks
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: npm ci
+      - run: uv sync --project apps/api --python 3.13 --frozen
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: uv run --project apps/api pytest apps/api/tests
+      - run: uv run --project apps/api ruff check apps/api
+      - run: uv run --project apps/api ruff format --check apps/api
+      - run: npm run format:check
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - run: npm run build
